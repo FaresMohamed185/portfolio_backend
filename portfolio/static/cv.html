@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fares Mohamed - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef2f7;
+            color: #111827;
+            line-height: 1.5;
+            padding: 32px 16px;
+        }
+
+        .job-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            /* خفيف مش تقيل */
+            color: #475569;
+            /* لون هادي */
+            margin-top: 4px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .cv-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 42px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .contact-info p {
+            margin-bottom: 2px;
+            word-break: break-word;
+        }
+
+        .contact-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #111827;
+            border-bottom: 1.5px solid #2563eb;
+            padding-bottom: 6px;
+            margin-top: 22px;
+            margin-bottom: 12px;
+        }
+
+        .objective-text,
+        .edu-desc,
+        .project-desc li,
+        .skills-category li,
+        .activities-list li {
+            font-size: 0.96rem;
+            color: #374151;
+        }
+
+        .objective-text {
+            text-align: left;
+        }
+
+        .edu-item,
+        .project-item,
+        .skills-block,
+        .activities-list {
+            margin-bottom: 4px;
+        }
+
+        .edu-title,
+        .project-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .edu-details {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 4px;
+        }
+
+        .edu-date {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 6px;
+        }
+
+        .edu-desc strong {
+            color: #111827;
+        }
+
+        .project-item {
+            margin-bottom: 14px;
+        }
+
+        .project-desc {
+            padding-left: 18px;
+        }
+
+        .project-desc li {
+            margin-bottom: 4px;
+        }
+
+        .skills-block {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skills-category h4 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .skills-category ul {
+            padding-left: 18px;
+        }
+
+        .skills-category li {
+            margin-bottom: 4px;
+        }
+
+        .activities-list {
+            padding-left: 18px;
+        }
+
+        .activities-list li {
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 18px 10px;
+            }
+
+            .cv-container {
+                padding: 28px 20px;
+            }
+
+            .name {
+                font-size: 1.6rem;
+            }
+
+            .contact-info {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.2cm;
+            }
+
+            body {
+                background: #ffffff;
+                padding: 0;
+                color: #000000;
+            }
+
+            .cv-container {
+                max-width: 100%;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .section-title {
+                color: #000000;
+                border-bottom: 1px solid #000000;
+            }
+
+            .edu-details {
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cv-container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1 class="name">FARES MOHAMED</h1>
+            <p class="job-title">Aspiring Data Analyst</p>
+            <div class="contact-info">
+                <p>Egypt | 01090892013 | fares.mohamed516@gmail.com</p>
+                <p>
+                    LinkedIn:
+                    <a href="https://www.linkedin.com/in/faresmohamed185/" target="_blank" class="contact-link">
+                        linkedin.com/in/faresmohamed185
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Objective -->
+        <div class="section-title">Objective</div>
+        <p class="objective-text">
+            Aspiring Data Analyst and Computer Engineering senior with a strong foundation in data analysis,
+            data modeling, and business intelligence. Passionate about transforming raw data into actionable
+            insights to support data-driven decision-making.
+        </p>
+
+        <!-- Education -->
+        <div class="section-title">Education</div>
+        <div class="edu-item">
+            <div class="edu-title">Badr University in Cairo (BUC)</div>
+            <div class="edu-details">Faculty of Engineering and Technology – Computer Engineering Department</div>
+            <div class="edu-date">2021 – 2026 | Expected Graduation: June 2026</div>
+            <div class="edu-desc">
+                <strong>GPA: 3.58 / 4.0</strong><br>
+                Senior student graduating this semester with experience in academic projects related to
+                data analysis, programming, and machine learning applications.
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section-title">Projects</div>
+
+        <div class="project-item">
+            <div class="project-title">Sales Analysis Dashboard – Power BI</div>
+            <ul class="project-desc">
+                <li>Performed data cleaning and transformation using Power Query.</li>
+                <li>Designed data models integrating sales, customer, and product data.</li>
+                <li>Built interactive dashboards using Power BI to analyze revenue, customer behavior, and product
+                    performance.</li>
+                <li>Extracted key business insights to support data-driven decision-making.</li>
+            </ul>
+        </div>
+
+        <div class="project-item">
+            <div class="project-title">Project Management Dashboard – Excel & Power BI</div>
+            <ul class="project-desc">
+                <li>Developed a project management dashboard using Excel and Power BI.</li>
+                <li>Performed data cleaning and analysis to monitor project performance and progress.</li>
+                <li>Identified inefficiencies and created visual reports to support decision-making.</li>
+            </ul>
+        </div>
+
+        <!-- Skills -->
+        <div class="section-title">Skills</div>
+
+        <div class="skills-block">
+            <div class="skills-category">
+                <h4>Technical Skills</h4>
+                <ul>
+                    <li>Power BI (Dashboarding, Data Modeling)</li>
+                    <li>Excel (Data Analysis, Pivot Tables, Power Query)</li>
+                    <li>SQL (Basic Queries)</li>
+                    <li>Python (Pandas – Data Analysis)</li>
+                    <li>C++ Programming</li>
+                </ul>
+            </div>
+
+            <div class="skills-category">
+                <h4>Core Skills</h4>
+                <ul>
+                    <li>Understanding Business Requirements</li>
+                    <li>Data Preprocessing</li>
+                    <li>Analytical Thinking</li>
+                    <li>Data Analysis & Visualization</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Activities -->
+        <div class="section-title">Activities</div>
+        <ul class="activities-list">
+            <li>Self-learning Data Analysis and Machine Learning through online courses.</li>
+            <li>Practicing real-world datasets and building dashboards.</li>
+            <li>Continuously improving technical and analytical skills.</li>
+        </ul>
+
+    </div>
+</body>
+
+</html>

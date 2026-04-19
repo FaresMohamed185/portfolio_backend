@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Fares Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0A0C10;
+            color: #EFF1F3;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2D3748;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #3B82F6, #14B8A6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logout-btn {
+            background: #EF4444;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: #DC2626;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: #1A1F2A;
+            padding: 28px 20px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid #2D3748;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: #3B82F6;
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #14B8A6;
+        }
+
+        .stat-label {
+            margin-top: 12px;
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 24px;
+            margin: 40px 0 25px 0;
+            padding-left: 15px;
+            border-left: 4px solid #3B82F6;
+        }
+
+        /* Add Project Form */
+        .add-project-form {
+            background: #1A1F2A;
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid #2D3748;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #9CA3AF;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #13161C;
+            border: 1px solid #2D3748;
+            border-radius: 14px;
+            color: #EFF1F3;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3B82F6, #14B8A6);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            background: #1A1F2A;
+            border-radius: 20px;
+            border: 1px solid #2D3748;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #2D3748;
+        }
+
+        th {
+            background: #13161C;
+            color: #3B82F6;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .delete-btn {
+            background: #EF4444;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #DC2626;
+        }
+
+        .read-btn {
+            background: #10B981;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .read-btn:hover {
+            background: #059669;
+        }
+
+        .unread {
+            background: rgba(59, 130, 246, 0.1);
+            font-weight: 500;
+        }
+
+        .flash-message {
+            background: rgba(20, 184, 166, 0.15);
+            color: #14B8A6;
+            padding: 14px 20px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-new {
+            background: #3B82F6;
+            color: white;
+        }
+
+        .badge-read {
+            background: #374151;
+            color: #9CA3AF;
+        }
+
+        .project-views {
+            color: #14B8A6;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>🔧 Admin Dashboard</h1>
+            <a href="/logout" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.get('home', 0) }}</div>
+                <div class="stat-label">👁️ Total Page Views</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ messages|length }}</div>
+                <div class="stat-label">✉️ Total Messages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ projects|length }}</div>
+                <div class="stat-label">📁 Total Projects</div>
+            </div>
+        </div>
+
+        <!-- Add New Project -->
+        <h2 class="section-title">➕ Add New Project</h2>
+        <div class="add-project-form">
+            <form method="POST" action="/admin/add-project">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" name="title" placeholder="e.g., Sales Analytics Dashboard" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tools Used</label>
+                        <input type="text" name="tools" placeholder="e.g., Power BI, Python, SQL" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Image Filename</label>
+                        <input type="text" name="image_file" placeholder="e.g., project.png" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PDF Filename</label>
+                        <input type="text" name="pdf_file" placeholder="e.g., dashboard.pdf" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="4" placeholder="Describe your project..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-plus"></i> Add Project
+                </button>
+            </form>
+        </div>
+
+        <!-- Existing Projects -->
+        <h2 class="section-title">📁 Existing Projects</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Tools</th>
+                        <th>Views</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                    <tr>
+                        <td>#{{ project.id }}</td>
+                        <td><strong>{{ project.title }}</strong></td>
+                        <td>{{ project.tools }}</td>
+                        <td class="project-views">👁️ {{ project.views }}</td>
+                        <td>
+                            <a href="/admin/delete-project/{{ project.id }}" class="delete-btn"
+                                onclick="return confirm('Delete this project permanently?')">
+                                🗑️ Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #6B7280;">No projects added yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Messages -->
+        <h2 class="section-title">✉️ Contact Messages</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for msg in messages %}
+                    <tr class="{% if not msg.is_read %}unread{% endif %}">
+                        <td>{{ msg.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td><strong>{{ msg.name }}</strong></td>
+                        <td>{{ msg.email }}</td>
+                        <td>{{ msg.message[:60] }}{% if msg.message|length > 60 %}...{% endif %}</td>
+                        <td>
+                            {% if msg.is_read %}
+                            <span class="badge badge-read">✅ Read</span>
+                            {% else %}
+                            <span class="badge badge-new">🆕 New</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not msg.is_read %}
+                            <a href="/admin/mark-read/{{ msg.id }}" class="read-btn">Mark Read</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: #6B7280;">No messages yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+
+</html>
