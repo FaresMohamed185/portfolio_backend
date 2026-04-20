@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +28,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid #2D3748;
             flex-wrap: wrap;
@@ -62,21 +61,22 @@
             transform: translateY(-2px);
         }
 
-        /* Stats Grid */
+        /* Stats Grid - 4 Cards */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .stat-card {
             background: #1A1F2A;
-            padding: 28px 20px;
-            border-radius: 24px;
+            padding: 25px 20px;
+            border-radius: 20px;
             text-align: center;
             border: 1px solid #2D3748;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .stat-card:hover {
@@ -84,22 +84,27 @@
             transform: translateY(-5px);
         }
 
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
         .stat-number {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 800;
             color: #14B8A6;
         }
 
         .stat-label {
-            margin-top: 12px;
+            margin-top: 10px;
             color: #9CA3AF;
             font-size: 14px;
         }
 
         /* Section Titles */
         .section-title {
-            font-size: 24px;
-            margin: 40px 0 25px 0;
+            font-size: 22px;
+            margin: 35px 0 20px 0;
             padding-left: 15px;
             border-left: 4px solid #3B82F6;
         }
@@ -108,7 +113,7 @@
         .add-project-form {
             background: #1A1F2A;
             padding: 30px;
-            border-radius: 24px;
+            border-radius: 20px;
             margin-bottom: 40px;
             border: 1px solid #2D3748;
         }
@@ -138,7 +143,7 @@
             padding: 12px 16px;
             background: #13161C;
             border: 1px solid #2D3748;
-            border-radius: 14px;
+            border-radius: 12px;
             color: #EFF1F3;
             font-size: 14px;
             transition: all 0.3s;
@@ -170,8 +175,9 @@
         .table-wrapper {
             overflow-x: auto;
             background: #1A1F2A;
-            border-radius: 20px;
+            border-radius: 16px;
             border: 1px solid #2D3748;
+            margin-bottom: 30px;
         }
 
         table {
@@ -179,8 +185,7 @@
             border-collapse: collapse;
         }
 
-        th,
-        td {
+        th, td {
             padding: 14px 16px;
             text-align: left;
             border-bottom: 1px solid #2D3748;
@@ -211,6 +216,20 @@
             background: #DC2626;
         }
 
+        .view-btn {
+            background: #3B82F6;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-decoration: none;
+            color: white;
+            margin-right: 8px;
+        }
+
+        .view-btn:hover {
+            background: #2563EB;
+        }
+
         .read-btn {
             background: #10B981;
             padding: 6px 14px;
@@ -227,15 +246,6 @@
         .unread {
             background: rgba(59, 130, 246, 0.1);
             font-weight: 500;
-        }
-
-        .flash-message {
-            background: rgba(20, 184, 166, 0.15);
-            color: #14B8A6;
-            padding: 14px 20px;
-            border-radius: 14px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(20, 184, 166, 0.3);
         }
 
         .badge {
@@ -256,18 +266,65 @@
             color: #9CA3AF;
         }
 
-        .project-views {
+        .flash-message {
+            background: rgba(20, 184, 166, 0.15);
             color: #14B8A6;
+            padding: 14px 20px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .chart-card {
+            background: #1A1F2A;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid #2D3748;
+        }
+
+        .chart-card h3 {
+            margin-bottom: 20px;
+            color: #3B82F6;
+            font-size: 18px;
+        }
+
+        .bar-container {
+            margin-bottom: 15px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .bar {
+            height: 30px;
+            background: linear-gradient(90deg, #3B82F6, #14B8A6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            color: white;
+            font-size: 12px;
             font-weight: 600;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <!-- Header -->
         <div class="dashboard-header">
-            <h1>🔧 Admin Dashboard</h1>
+            <h1>🔧 Admin Dashboard - Fares Mohamed</h1>
             <a href="/logout" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
@@ -275,28 +332,76 @@
 
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="flash-message">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
 
-        <!-- Statistics -->
+        <!-- Statistics Cards -->
         <div class="stats-grid">
             <div class="stat-card">
+                <div class="stat-icon">👁️</div>
                 <div class="stat-number">{{ stats.get('home', 0) }}</div>
-                <div class="stat-label">👁️ Total Page Views</div>
+                <div class="stat-label">Total Page Views</div>
             </div>
             <div class="stat-card">
+                <div class="stat-icon">✉️</div>
                 <div class="stat-number">{{ messages|length }}</div>
-                <div class="stat-label">✉️ Total Messages</div>
+                <div class="stat-label">Total Messages</div>
             </div>
             <div class="stat-card">
+                <div class="stat-icon">📁</div>
                 <div class="stat-number">{{ projects|length }}</div>
-                <div class="stat-label">📁 Total Projects</div>
+                <div class="stat-label">Total Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👀</div>
+                <div class="stat-number">{{ projects|sum(attribute='views') }}</div>
+                <div class="stat-label">Total Project Views</div>
+            </div>
+        </div>
+
+        <!-- Projects Performance Chart -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>📊 Projects Performance (Views)</h3>
+                {% for project in projects %}
+                <div class="bar-container">
+                    <div class="bar-label">
+                        <span>{{ project.title[:25] }}...</span>
+                        <span>{{ project.views }} views</span>
+                    </div>
+                    <div class="bar" style="width: {{ (project.views / (projects|sum(attribute='views') or 1) * 100) }}%; min-width: 30px;">
+                        {% if project.views > 0 %}{{ project.views }}{% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <p style="color: #9CA3AF;">No projects yet</p>
+                {% endfor %}
+            </div>
+
+            <div class="chart-card">
+                <h3>📈 Quick Stats</h3>
+                <div class="bar-container">
+                    <div class="bar-label">
+                        <span>Messages Read</span>
+                        <span>{{ messages|selectattr('is_read', 'equalto', true)|list|length }} / {{ messages|length }}</span>
+                    </div>
+                    <div class="bar" style="width: {{ (messages|selectattr('is_read', 'equalto', true)|list|length / (messages|length or 1) * 100) }}%;">
+                    </div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-label">
+                        <span>Projects with Views</span>
+                        <span>{{ projects|selectattr('views', 'greaterthan', 0)|list|length }} / {{ projects|length }}</span>
+                    </div>
+                    <div class="bar" style="width: {{ (projects|selectattr('views', 'greaterthan', 0)|list|length / (projects|length or 1) * 100) }}%;">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -317,7 +422,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Image Filename</label>
-                        <input type="text" name="image_file" placeholder="e.g., project.png" required>
+                        <input type="text" name="image_file" placeholder="e.g., sales.png" required>
                     </div>
                     <div class="form-group">
                         <label>PDF Filename</label>
@@ -334,7 +439,7 @@
             </form>
         </div>
 
-        <!-- Existing Projects -->
+        <!-- Existing Projects Table -->
         <h2 class="section-title">📁 Existing Projects</h2>
         <div class="table-wrapper">
             <table>
@@ -344,6 +449,8 @@
                         <th>Title</th>
                         <th>Tools</th>
                         <th>Views</th>
+                        <th>Image</th>
+                        <th>PDF</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -353,24 +460,25 @@
                         <td>#{{ project.id }}</td>
                         <td><strong>{{ project.title }}</strong></td>
                         <td>{{ project.tools }}</td>
-                        <td class="project-views">👁️ {{ project.views }}</td>
+                        <td style="color: #14B8A6; font-weight: 600;">👁️ {{ project.views }}</td>
+                        <td><a href="/static/{{ project.image_file }}" target="_blank" class="view-btn" style="background: #8B5CF6;">View</a></td>
+                        <td><a href="/static/{{ project.pdf_file }}" target="_blank" class="view-btn">PDF</a></td>
                         <td>
-                            <a href="/admin/delete-project/{{ project.id }}" class="delete-btn"
-                                onclick="return confirm('Delete this project permanently?')">
+                            <a href="/admin/delete-project/{{ project.id }}" class="delete-btn" onclick="return confirm('Delete this project permanently?')">
                                 🗑️ Delete
                             </a>
                         </td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="5" style="text-align: center; color: #6B7280;">No projects added yet</td>
+                        <td colspan="7" style="text-align: center; color: #6B7280;">No projects added yet</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
 
-        <!-- Messages -->
+        <!-- Messages Table -->
         <h2 class="section-title">✉️ Contact Messages</h2>
         <div class="table-wrapper">
             <table>
@@ -390,17 +498,17 @@
                         <td>{{ msg.date.strftime('%Y-%m-%d %H:%M') }}</td>
                         <td><strong>{{ msg.name }}</strong></td>
                         <td>{{ msg.email }}</td>
-                        <td>{{ msg.message[:60] }}{% if msg.message|length > 60 %}...{% endif %}</td>
+                        <td style="max-width: 300px;">{{ msg.message[:80] }}{% if msg.message|length > 80 %}...{% endif %}</td>
                         <td>
                             {% if msg.is_read %}
-                            <span class="badge badge-read">✅ Read</span>
+                                <span class="badge badge-read">✅ Read</span>
                             {% else %}
-                            <span class="badge badge-new">🆕 New</span>
+                                <span class="badge badge-new">🆕 New</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if not msg.is_read %}
-                            <a href="/admin/mark-read/{{ msg.id }}" class="read-btn">Mark Read</a>
+                                <a href="/admin/mark-read/{{ msg.id }}" class="read-btn">Mark Read</a>
                             {% endif %}
                         </td>
                     </tr>
@@ -417,5 +525,4 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </body>
-
 </html>
