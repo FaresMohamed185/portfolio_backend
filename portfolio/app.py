@@ -5,10 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
 
-# ========== التعديل هنا ==========
 app = Flask(__name__)
-# =================================
-
 app.config['SECRET_KEY'] = 'your-secret-key-here-change-it'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -42,7 +39,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    tools = db.Column(db.String(200), nullable=False)  # تخزين كـ "Power BI,Python,SQL"
+    tools = db.Column(db.String(200), nullable=False)
     pdf_file = db.Column(db.String(200), nullable=False)
     image_file = db.Column(db.String(200), nullable=False)
     views = db.Column(db.Integer, default=0)
@@ -58,16 +55,53 @@ class PageView(db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# ==================== CREATE DATABASE ====================
+# ==================== ADD DEFAULT PROJECTS ====================
+def add_default_projects():
+    """إضافة مشاريع افتراضية إذا كانت قاعدة البيانات فاضية"""
+    if Project.query.count() == 0:
+        projects_data = [
+            {
+                'title': 'Retail Analytics & Profitability Insights',
+                'description': 'Analyzed a large retail dataset to uncover key revenue drivers, identify channel dependency risks (93% online sales), and highlight top-performing product categories to support data-driven decision-making.',
+                'tools': 'Power BI, Power Query',
+                'pdf_file': 'Sales Dashboard.pdf',
+                'image_file': 'sales.png'
+            },
+            {
+                'title': 'Project Performance & Strategic Analysis',
+                'description': 'Developed an interactive dashboard to monitor project cost, benefit, and completion status, identifying inefficiencies and supporting better strategic planning across departments.',
+                'tools': 'Power BI, Power Query',
+                'pdf_file': 'Project Managment Dashboard.pdf',
+                'image_file': 'project management.png'
+            },
+            {
+                'title': 'Blinkit Sales & Outlet Performance Dashboard',
+                'description': 'Designed an interactive Power BI dashboard to analyze Blinkit\'s sales performance across product categories, fat content, outlet size, outlet location tier, and outlet type. The dashboard highlights key KPIs, product performance, and branch-level insights to support data-driven business decisions and expansion planning.',
+                'tools': 'Power BI, Power Query, DAX',
+                'pdf_file': 'blinkit_dashboard.pdf',
+                'image_file': 'blinkit_dashboard.png'
+            }
+        ]
+        
+        for project_data in projects_data:
+            project = Project(**project_data)
+            db.session.add(project)
+        
+        db.session.commit()
+        print("✅ Default projects added to database!")
 
+# ==================== CREATE DATABASE ====================
 with app.app_context():
     db.create_all()
-    # إنشاء مستخدم admin افتراضي (username: admin, password: admin123)
+    add_default_projects()
+    
+    # إنشاء مستخدم admin افتراضي
     if not User.query.filter_by(username='admin').first():
         admin = User(username='admin')
         admin.set_password('admin123')
         db.session.add(admin)
         db.session.commit()
+        print("✅ Admin user created!")
 
 # ==================== ROUTES ====================
 
@@ -137,7 +171,6 @@ def admin_dashboard():
     projects = Project.query.order_by(Project.created_at.desc()).all()
     stats = PageView.query.all()
     
-    # إحصائيات المشاهدات
     stats_dict = {s.page: s.views for s in stats}
     
     return render_template('admin.html', messages=messages, projects=projects, stats=stats_dict)
